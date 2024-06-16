@@ -80,7 +80,8 @@ class CustomerServiceTest {
         CustomerRegistrationRequest request = new CustomerRegistrationRequest(
                 "Kevin",
                 email,
-                22
+                22,
+                Gender.MALE
         );
         // When
         underTest.addCustomer(request);
@@ -111,7 +112,8 @@ class CustomerServiceTest {
         CustomerRegistrationRequest request = new CustomerRegistrationRequest(
                 "Kevin",
                 email,
-                22
+                22,
+                Gender.MALE
         );
         // When
         assertThatThrownBy(() -> underTest.addCustomer(request))
