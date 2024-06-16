@@ -17,16 +17,16 @@ public class CustomerListDataAccessService implements CustomerDao{
                 1,
                 "Alex",
                 "Alex@gmail.com",
-                21
-        );
+                21,
+                Gender.MALE);
         customers.add(alex);
 
         Customer jamila = new Customer(
                 2,
                 "Jamila",
                 "jamila@gmail.com",
-                29
-        );
+                29,
+                Gender.MALE);
         customers.add(jamila);
     }
 

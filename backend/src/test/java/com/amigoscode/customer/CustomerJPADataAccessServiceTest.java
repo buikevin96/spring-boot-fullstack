@@ -10,8 +10,6 @@ import org.mockito.MockitoAnnotations;
 
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class CustomerJPADataAccessServiceTest extends AbstractTestcontainers {
 
     private CustomerJPADataAccessService underTest;
@@ -60,8 +58,8 @@ class CustomerJPADataAccessServiceTest extends AbstractTestcontainers {
                 1,
                 "Kevin",
                 "k@gmail.com",
-                24
-        );
+                24,
+                Gender.MALE);
 
         // When
         underTest.insertCustomer(customer);
@@ -77,8 +75,8 @@ class CustomerJPADataAccessServiceTest extends AbstractTestcontainers {
         Customer customer = new Customer(
                 FAKER.name().fullName(),
                 email,
-                20
-        );
+                20,
+                Gender.MALE);
 
         // When
         underTest.existsPersonWithEmail(email);
@@ -95,8 +93,8 @@ class CustomerJPADataAccessServiceTest extends AbstractTestcontainers {
                 id,
                 FAKER.name().fullName(),
                 email,
-                20
-        );
+                20,
+                Gender.MALE);
 
 
         // When
@@ -115,8 +113,8 @@ class CustomerJPADataAccessServiceTest extends AbstractTestcontainers {
                 id,
                 FAKER.name().fullName(),
                 email,
-                20
-        );
+                20,
+                Gender.MALE);
 
         // When
         underTest.deleteCustomerById(id);
@@ -133,8 +131,8 @@ class CustomerJPADataAccessServiceTest extends AbstractTestcontainers {
                 1,
                 FAKER.name().fullName(),
                 email,
-                20
-        );
+                20,
+                Gender.MALE);
 
 
         // When

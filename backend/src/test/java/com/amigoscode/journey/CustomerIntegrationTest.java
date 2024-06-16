@@ -3,6 +3,7 @@ package com.amigoscode.journey;
 import com.amigoscode.customer.Customer;
 import com.amigoscode.customer.CustomerRegistrationRequest;
 import com.amigoscode.customer.CustomerUpdateRequest;
+import com.amigoscode.customer.Gender;
 import com.github.javafaker.Faker;
 import com.github.javafaker.Name;
 import org.junit.jupiter.api.Test;
@@ -69,8 +70,8 @@ public class CustomerIntegrationTest {
         Customer expectedCustomer = new Customer(
                 name,
                 email,
-                age
-        );
+                age,
+                Gender.MALE);
 
         assertThat(allCustomers)
                 .usingRecursiveFieldByFieldElementComparatorIgnoringFields("id")
@@ -230,8 +231,8 @@ public class CustomerIntegrationTest {
                 id,
                 newName,
                 email,
-                age
-        );
+                age,
+                Gender.MALE);
 
         assertThat(updatedCustomer).isEqualTo(expected);
     }

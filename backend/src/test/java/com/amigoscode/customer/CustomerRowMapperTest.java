@@ -1,16 +1,13 @@
 package com.amigoscode.customer;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -31,6 +28,7 @@ class CustomerRowMapperTest {
         when(resultSet.getInt("age")).thenReturn(19);
         when(resultSet.getString("name")).thenReturn("kev");
         when(resultSet.getString("email")).thenReturn("kev@email.com");
+        when(resultSet.getString("gender")).thenReturn("FEMALE");
 
         // When
         Customer actual = customerRowMapper.mapRow(null, 1);
@@ -40,8 +38,8 @@ class CustomerRowMapperTest {
                 1,
                 "kev",
                 "kev@email.com",
-                19
-        );
+                19,
+                Gender.FEMALE);
 
         assertThat(actual).isEqualTo(expected);
     }
