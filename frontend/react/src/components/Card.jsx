@@ -29,9 +29,11 @@ export default function CardWithImage({id, name, email, age, gender, imageNumber
     return <Center py={6}>
         <Box
             maxW={'300px'}
+            minW={'300px'}
             w={'full'}
+            m={2}
             bg={useColorModeValue('white', 'gray.800')}
-            boxShadow={'2xl'}
+            boxShadow={'lg'}
             rounded={'md'}
             overflow={'hidden'}>
             <Image
@@ -66,12 +68,23 @@ export default function CardWithImage({id, name, email, age, gender, imageNumber
                 </Stack>
             </Box>
 
+<<<<<<< Updated upstream
             <Stack direction={'row'} justify={'center'} spacing={6}>
                 <Stack>
                     <UpdateCustomerDrawer initialValues={{ name, email, age }}/>
                     <Stack m={8}>
                         <Button
                             mt={8}
+=======
+            <Stack direction={'row'} justify={'center'} spacing={6} p={4}>
+                <Stack>
+                    <UpdateCustomerDrawer initialValues={{ name, email, age }}
+                                            customerId={id}
+                                          fetchCustomers={fetchCustomers}
+                    />
+                    <Stack>
+                        <Button
+>>>>>>> Stashed changes
                             bg={"red.400"}
                             color={'white'}
                             rounded={'full'}
