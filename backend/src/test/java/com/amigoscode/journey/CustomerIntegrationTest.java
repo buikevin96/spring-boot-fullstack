@@ -42,7 +42,7 @@ public class CustomerIntegrationTest {
         CustomerRegistrationRequest request = new CustomerRegistrationRequest(
                 name,
                 email,
-                age,
+                "password", age,
                 gender
         );
 
@@ -74,7 +74,7 @@ public class CustomerIntegrationTest {
         Customer expectedCustomer = new Customer(
                 name,
                 email,
-                age,
+                password, age,
                 gender);
 
         assertThat(allCustomers)
@@ -111,7 +111,7 @@ public class CustomerIntegrationTest {
         CustomerRegistrationRequest request = new CustomerRegistrationRequest(
                 name,
                 email,
-                age,
+                "password", age,
                 gender
         );
 
@@ -174,7 +174,7 @@ public class CustomerIntegrationTest {
         CustomerRegistrationRequest request = new CustomerRegistrationRequest(
                 name,
                 email,
-                age,
+                "password", age,
                 gender
         );
 
@@ -239,7 +239,7 @@ public class CustomerIntegrationTest {
                 id,
                 newName,
                 email,
-                age,
+                "password", age,
                 gender);
 
         assertThat(updatedCustomer).isEqualTo(expected);

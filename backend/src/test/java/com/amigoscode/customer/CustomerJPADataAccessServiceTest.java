@@ -58,7 +58,7 @@ class CustomerJPADataAccessServiceTest extends AbstractTestcontainers {
                 1,
                 "Kevin",
                 "k@gmail.com",
-                24,
+                "password", 24,
                 Gender.MALE);
 
         // When
@@ -75,7 +75,7 @@ class CustomerJPADataAccessServiceTest extends AbstractTestcontainers {
         Customer customer = new Customer(
                 FAKER.name().fullName(),
                 email,
-                20,
+                password, 20,
                 Gender.MALE);
 
         // When
@@ -93,7 +93,7 @@ class CustomerJPADataAccessServiceTest extends AbstractTestcontainers {
                 id,
                 FAKER.name().fullName(),
                 email,
-                20,
+                "password", 20,
                 Gender.MALE);
 
 
@@ -113,7 +113,7 @@ class CustomerJPADataAccessServiceTest extends AbstractTestcontainers {
                 id,
                 FAKER.name().fullName(),
                 email,
-                20,
+                "password", 20,
                 Gender.MALE);
 
         // When
@@ -131,7 +131,7 @@ class CustomerJPADataAccessServiceTest extends AbstractTestcontainers {
                 1,
                 FAKER.name().fullName(),
                 email,
-                20,
+                "password", 20,
                 Gender.MALE);
 
 
