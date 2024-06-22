@@ -122,9 +122,15 @@ public class CustomerIntegrationTest {
                 gender
         );
 
+        CustomerRegistrationRequest request2 = new CustomerRegistrationRequest(
+                name,
+                email + ".uk",
+                "password", age,
+                gender
+        );
 
-        // Send a post request
         String uri = "api/v1/customers";
+        // Send a post request to create customer 1
         webTestClient.post()
                 .uri(uri)
                 .accept(MediaType.APPLICATION_JSON)
@@ -134,10 +140,25 @@ public class CustomerIntegrationTest {
                 .expectStatus()
                 .isOk();
 
+        // Send a post request to create customer 2
+        String jwtToken = webTestClient.post()
+                .uri(uri)
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(Mono.just(request2), CustomerRegistrationRequest.class)
+                .exchange()
+                .expectStatus()
+                .isOk()
+                .returnResult(Void.class)
+                .getResponseHeaders()
+                .get(AUTHORIZATION)
+                .get(0);
+
         // Get all customers
         List<Customer> allCustomers = webTestClient.get()
                 .uri(uri)
                 .accept(MediaType.APPLICATION_JSON)
+                .header(AUTHORIZATION, String.format("Bearer %s", jwtToken))
                 .exchange()
                 .expectStatus()
                 .isOk()
@@ -153,17 +174,20 @@ public class CustomerIntegrationTest {
                 .findFirst()
                 .orElseThrow();
 
+        // Customer 2 deletes customer 1
         webTestClient.delete()
                         .uri(uri + "/{id}", id)
+                            .header(AUTHORIZATION, String.format("Bearer %s", jwtToken))
                                 .accept(MediaType.APPLICATION_JSON)
                                         .exchange()
                                                 .expectStatus()
                                                         .isOk();
 
-        // Get customer by id
+        // Customer 2 gets customer 1 by id
         webTestClient.get()
                 .uri(uri + "/{id}", id)
                 .accept(MediaType.APPLICATION_JSON)
+                .header(AUTHORIZATION, String.format("Bearer %s", jwtToken))
                 .exchange()
                 .expectStatus()
                 .isNotFound();
