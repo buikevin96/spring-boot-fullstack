@@ -1,10 +1,12 @@
 package com.amigoscode.customer;
 
 import com.amigoscode.AbstractTestcontainers;
+import com.amigoscode.TestConfig;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.context.annotation.Import;
 
 import java.util.UUID;
 
@@ -12,6 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@Import({TestConfig.class})
 class CustomerRepositoryTest extends AbstractTestcontainers {
 
     private CustomerRepository underTest;

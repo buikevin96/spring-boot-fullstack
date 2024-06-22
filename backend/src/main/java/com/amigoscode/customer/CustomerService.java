@@ -8,24 +8,34 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CustomerService {
 
     private final CustomerDao customerDao;
+    private final CustomerDTOMapper customerDTOMapper;
     private final PasswordEncoder passwordEncoder;
 
-    public CustomerService(@Qualifier("jdbc") CustomerDao customerDao, PasswordEncoder passwordEncoder) {
+
+    public CustomerService(@Qualifier("jdbc") CustomerDao customerDao,
+                           CustomerDTOMapper customerDTOMapper,
+                           PasswordEncoder passwordEncoder) {
         this.customerDao = customerDao;
+        this.customerDTOMapper = customerDTOMapper;
         this.passwordEncoder = passwordEncoder;
     }
 
-    public List<Customer> getAllCustomers(){
-        return customerDao.selectALlCustomers();
+    public List<CustomerDTO> getAllCustomers(){
+        return customerDao.selectALlCustomers()
+                .stream()
+                .map(customerDTOMapper)
+                .collect(Collectors.toList());
     }
 
-    public Customer getCustomerById(Integer id){
+    public CustomerDTO getCustomerById(Integer id){
         return customerDao.selectCustomerById(id)
+                .map(customerDTOMapper)
                 .orElseThrow(() ->
                         new ResourceNotFoundException(
                                 "customer with id %s not found".formatted(id)
@@ -60,7 +70,11 @@ public class CustomerService {
     }
 
     public void updateCustomer(Integer id, CustomerUpdateRequest updateRequest){
-        Customer customer = getCustomerById(id);
+        Customer customer = customerDao.selectCustomerById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(
+                                "customer with id %s not found".formatted(id)
+                        ));
 
         boolean changes = false;
 
