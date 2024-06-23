@@ -15,6 +15,7 @@ import * as Yup from 'yup';
 import {useAuth} from "../context/AuthContext.jsx";
 import {errorNotification} from "../../services/notification.js";
 import {useNavigate} from "react-router-dom";
+import {useEffect} from "react";
 
 const [field, meta] = useField(props);
 return (
@@ -89,6 +90,15 @@ const LoginForm = ()=> {
 }
 
 const Login = () => {
+
+    const { customer } = useAuth();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (customer) {
+            navigate("/dashboard");
+        }
+    });
 
     useAuth();
     return (

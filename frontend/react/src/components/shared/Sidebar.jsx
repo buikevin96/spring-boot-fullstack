@@ -135,7 +135,7 @@ const NavItem = ({icon, children, ...rest}) => {
 };
 
 const MobileNav = ({onOpen, ...rest}) => {
-    const {logout} = useAuth();
+    const {logout, customer} = useAuth();
     return (
         <Flex
             ml={{base: 0, md: 60}}
@@ -188,10 +188,13 @@ const MobileNav = ({onOpen, ...rest}) => {
                                     alignItems="flex-start"
                                     spacing="1px"
                                     ml="2">
-                                    <Text fontSize="sm">Justina Clark</Text>
-                                    <Text fontSize="xs" color="gray.600">
-                                        Admin
-                                    </Text>
+                                    <Text fontSize="sm">{customer?.username}</Text>
+                                    {customer?.roles.map((role, id) => (
+                                        <Text key={id} fontSize="xs" color="gray.600">
+                                            {role}
+                                        </Text>
+                                    ))}
+
                                 </VStack>
                                 <Box display={{base: 'none', md: 'flex'}}>
                                     <FiChevronDown/>
