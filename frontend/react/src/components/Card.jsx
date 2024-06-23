@@ -68,14 +68,12 @@ export default function CardWithImage({id, name, email, age, gender, imageNumber
                 </Stack>
             </Box>
 
-<<<<<<< Updated upstream
             <Stack direction={'row'} justify={'center'} spacing={6}>
                 <Stack>
                     <UpdateCustomerDrawer initialValues={{ name, email, age }}/>
                     <Stack m={8}>
                         <Button
                             mt={8}
-=======
             <Stack direction={'row'} justify={'center'} spacing={6} p={4}>
                 <Stack>
                     <UpdateCustomerDrawer initialValues={{ name, email, age }}
@@ -84,7 +82,6 @@ export default function CardWithImage({id, name, email, age, gender, imageNumber
                     />
                     <Stack>
                         <Button
->>>>>>> Stashed changes
                             bg={"red.400"}
                             color={'white'}
                             rounded={'full'}
@@ -147,5 +144,5 @@ export default function CardWithImage({id, name, email, age, gender, imageNumber
                 </Stack>
             </Stack>
         </Box>
-    </Center>;
+    </Center>
 }
