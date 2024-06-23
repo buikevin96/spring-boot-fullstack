@@ -14,6 +14,7 @@ import {Formik, Form, useField} from "formik";
 import * as Yup from 'yup';
 import {useAuth} from "../context/AuthContext.jsx";
 import {errorNotification} from "../../services/notification.js";
+import {useNavigate} from "react-router-dom";
 
 const [field, meta] = useField(props);
 return (
@@ -32,6 +33,7 @@ return (
 
 const LoginForm = ()=> {
     const {user, login} = useAuth();
+    const navigate = useNavigate();
     return (
         <Formik
             validateOnMount={true}
@@ -49,7 +51,8 @@ const LoginForm = ()=> {
                 onSubmit={(values, {setSubmitting}) => {
                     setSubmitting(true);
                     login(values).then(res => {
-                        console.log("Success login", res);
+                        navigate("/dashboard")
+                        console.log("Success login");
                     }).catch(err => {
                         errorNotification(
                             err.code,
